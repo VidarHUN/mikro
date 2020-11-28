@@ -8,7 +8,7 @@ jobs:
   include:
     - stage: Build node-backend image
       script:
-        - docker build -t node-backend .
+        - docker build -t node-backend ./node-backend
         - docker images
         - docker tag node-backend $DOCKER_USERNAME/node-backend
         - docker push $DOCKER_USERNAME/node-backend
