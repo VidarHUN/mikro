@@ -1,13 +1,11 @@
 services:
   - docker
 
-script:
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-
 jobs:
   include:
     - stage: Build node-backend image
       script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t node-backend ./node-backend
         - docker images
         - docker tag node-backend $DOCKER_USERNAME/node-backend
