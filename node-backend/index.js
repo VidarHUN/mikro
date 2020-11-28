@@ -1,3 +1,8 @@
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
+const cors = require('cors');
+
 var monngoURL = 'mongodb://mongo-service/database'
 
 mongoose.connect(monngoURL, { useNewUrlParser: true })

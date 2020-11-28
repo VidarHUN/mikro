@@ -18,6 +18,5 @@ spec:
       containers:
         - name: node-backend-container
           image: vidarhun/node-backend
-          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
