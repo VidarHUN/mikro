@@ -1,23 +1,17 @@
 const express = require('express');
-const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const routes = require("./routes");
 
-var monngoURL = 'mongodb://mongo-service/database'
+mongoose
+  .connect("mongodb://mongo-service/database", { useNewUrlParser: true, useUnifiedTopology: true})
+  .then(() => {
+    const app = express();
+    app.use(express.json());
+    app.use(cors({origin: '*'}));
+    app.use("/api", routes);
 
-mongoose.connect(monngoURL, { useNewUrlParser: true })
-    .then(
-        () => {
-            console.log("connected to mongo");
-        }
-    ).catch((error) => {
-        console.log("unable to connect to mongoDB");
+    app.listen(3000, () => {
+      console.log("Server has started!");
     });
-
-app.listen(3000, function() {
-    console.log('listening on 3000')
-});
-
-app.get('/api', (req, res) => {     
-    res.send('Hello World') 
-  })
+  });
