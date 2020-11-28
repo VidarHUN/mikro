@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-backend-deployment
+  labels:
+    app: node-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-backend-pod
+  template:
+    metadata:
+      name: node-backend-pod
+      labels:
+        app: node-backend-pod
+    spec:
+      containers:
+        - name: node-backend-container
+          image: vidarhun/node-backend
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
