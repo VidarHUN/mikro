@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+   name: python-backend-service
+   labels:
+     app: python-backend-service
+spec:
+   ports:
+     - protocol: TCP
+       port: 5000
+       targetPort: 5000
+   selector:
+     app: python-backend-pod

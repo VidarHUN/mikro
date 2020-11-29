@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-backend-deployment
+  labels:
+    app: python-backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-backend-pod
+  template:
+    metadata:
+      name: python-backend-pod
+      labels:
+        app: python-backend-pod
+    spec:
+      containers:
+        - name: python-backend-container
+          image: vidarhun/python-backend
+          ports:
+            - containerPort: 5000
