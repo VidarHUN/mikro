@@ -29,63 +29,60 @@ class User(db.Model):
 # Schema for json parsing
 class UserSchema(ma.Schema):
     class Meta: 
-        fields = ('id', 'role')
+        fields = ('id', 'username', 'role')
 
 user_schema = UserSchema() # Fetch a single user
 users_schema = UserSchema(many=True) # Fetch multiple user
 
+# API
 class UserManager(Resource):
+
+    # Get user many or one
     @staticmethod
     def get():
-        try: id = request.args['id']
+        try: id = request.args['id'] # Check if the URL contain an ID
         except Exception as _: id = None
 
-        if not id:
+        if not id: # If there is no ID return back with every user
             users = User.query.all()
             return jsonify(users_schema.dump(users))
-        user = User.query.get(id)
+        user = User.query.get(id) # Else return back the specific user
         return jsonify(user_schema.dump(user))
 
     @staticmethod
     def post():
         username = request.json['username']
-        password = request.json['password']
-        first_name = request.json['first_name']
-        last_name = request.json['last_name']
-        age = request.json['age']
+        role = request.json['role']
 
-        user = User(username, password, first_name, last_name, age)
+        user = User(username, role)
         db.session.add(user)
         db.session.commit()
         return jsonify({
-            'Message': f'User {first_name} {last_name} inserted.'
+            'Message': f'User {username} with role: {role} inserted.'
         })
 
+    # Update an existing user
     @staticmethod
     def put():
+        # If there is not have an ID return back an error
         try: id = request.args['id']
         except Exception as _: id = None
         if not id:
             return jsonify({ 'Message': 'Must provide the user ID' })
-        user = User.query.get(id)
+        user = User.query.get(id) # Get user by ID
 
         username = request.json['username']
-        password = request.json['password']
-        first_name = request.json['first_name']
-        last_name = request.json['last_name']
-        age = request.json['age']
+        role = request.json['role']
 
         user.username = username 
-        user.password = password 
-        user.first_name = first_name 
-        user.last_name = last_name
-        user.age = age 
+        user.role = role 
 
         db.session.commit()
         return jsonify({
-            'Message': f'User {first_name} {last_name} altered.'
+            'Message': f'User {username} altered.'
         })
 
+    # Delete a specific user from database
     @staticmethod
     def delete():
         try: id = request.args['id']
@@ -100,3 +97,8 @@ class UserManager(Resource):
         return jsonify({
             'Message': f'User {str(id)} deleted.'
         })
+
+api.add_resource(UserManager, '/api/users')
+
+if __name__ == '__main__':
+    app.run(debug=True)

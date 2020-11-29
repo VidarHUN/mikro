@@ -17,3 +17,10 @@ jobs:
         - docker images
         - docker tag frontend $DOCKER_USERNAME/frontend
         - docker push $DOCKER_USERNAME/frontend
+    - stage: Build python-backend image
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t python-backend ./python-backend
+        - docker images
+        - docker tag python-backend $DOCKER_USERNAME/python-backend
+        - docker push $DOCKER_USERNAME/python-backend
