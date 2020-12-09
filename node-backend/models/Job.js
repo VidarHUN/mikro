@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const schema = mongoose.Schema({
-  title: String,
+  user: String,
   content: String,
-  expiration: Date,
+  expiration: String,
 });
 
 module.exports = mongoose.model("Job", schema);

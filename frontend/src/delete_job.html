@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Delete job</title>
+    <script src="./node-api.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body onload="getJobsDelete()">
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+        <h3 class="w3-bar-item">Menu</h3>
+        <a href="./index.html" class="w3-bar-item w3-button">All job</a>
+        <a href="./add_job.html" class="w3-bar-item w3-button">Add job</a>
+        <a href="./update_job.html" class="w3-bar-item w3-button">Update job</a>
+        <a href="./delete_job.html" class="w3-bar-item w3-button">Delete job</a>
+    </div>
+
+    <!-- Page Content --> 
+    <div style="margin-left:15%">
+
+        <div class="w3-container w3-black">
+            <h1>Jobs</h1>
+        </div>
+        
+        <div class="w3-container">
+            <h1>Delete job.</h1>
+        </div>
+
+        <div class="w3-container">
+            <ul id="jobs" class="w3-ul w3-card-4">
+            </ul>
+        </div>        
+    </div>
+          
+</body>
+
+</html>

@@ -11,7 +11,7 @@ router.get("/jobs", async (req, res) => {
 // Create a new job
 router.post("/jobs", async (req, res) => {
   const job = new Job({
-    title: req.body.title,
+    user: req.body.user,
     content: req.body.content,
     expiration: req.body.expiration
   });
@@ -35,8 +35,8 @@ router.patch("/jobs/:id", async (req, res) => {
   try {
     const job = await Job.findOne({ _id: req.params.id });
 
-    if (req.body.title) {
-        job.title = req.body.title;
+    if (req.body.user) {
+        job.user = req.body.user;
     }
 
     if (req.body.content) {

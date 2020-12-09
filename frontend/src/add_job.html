@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Add job</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./node-api.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+        <h3 class="w3-bar-item">Menu</h3>
+        <a href="./index.html" class="w3-bar-item w3-button">All job</a>
+        <a href="./add_job.html" class="w3-bar-item w3-button">Add job</a>
+        <a href="./update_job.html" class="w3-bar-item w3-button">Update job</a>
+        <a href="./delete_job.html" class="w3-bar-item w3-button">Delete job</a>
+    </div>
+
+    <!-- Page Content --> 
+    <div style="margin-left:15%">
+
+        <div class="w3-container w3-black">
+            <h1>Jobs</h1>
+        </div>
+
+        <p class=result></p>
+
+        <!-- New post -->
+        <div class="w3-card-4 w3-display-middle" style="width: 50%; height: 75%;">
+
+        <div class="w3-container">
+            <h1>Add job.</h1>
+        </div>
+        
+        <form class="w3-container">
+            <p>
+                <label class="w3-text-black"><b>User</b></label>
+                <input class="w3-input w3-border" type="text" name="user" id="user">
+            <p>
+                <label class="w3-text-black"><b>Content</b></label>
+                <input class="w3-input w3-border" type="text" name="content" id="content">
+            </p>
+            <p>
+                <label class="w3-text-black"><b>Expiration</b></label>
+                <input class="w3-input w3-border" type="text" name="expiration" id="expiration"><br>
+            </p>
+            
+            <button class="w3-btn w3-black" onclick="sendJSON()">Add job</button>
+        </form>
+      
+        
+    </div>
+          
+</body>
+
+</html>
