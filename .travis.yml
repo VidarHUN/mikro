@@ -24,3 +24,10 @@ jobs:
         - docker images
         - docker tag python-backend $DOCKER_USERNAME/python-backend
         - docker push $DOCKER_USERNAME/python-backend
+    - stage: Build auth image
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t auth ./auth
+        - docker images
+        - docker tag auth $DOCKER_USERNAME/auth
+        - docker push $DOCKER_USERNAME/auth
