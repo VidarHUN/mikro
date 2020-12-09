@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const routes = require("./routes");
 
-Prod
+// Prod
 mongoose
   .connect("mongodb://mongo-service/database", { useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
