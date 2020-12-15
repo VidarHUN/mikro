@@ -34,6 +34,7 @@ class UserSchema(ma.Schema):
 user_schema = UserSchema() # Fetch a single user
 users_schema = UserSchema(many=True) # Fetch multiple user
 
+db.create_all()
 # API
 class UserManager(Resource):
 
@@ -101,4 +102,4 @@ class UserManager(Resource):
 api.add_resource(UserManager, '/api/users')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port=5000)
