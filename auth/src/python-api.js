@@ -9,9 +9,9 @@ function checkUser() {
       if (this.readyState == 4 && this.status == 200) {
         user = JSON.parse(this.responseText);
         if (user.password == password.value) {
-            console.alert("Access granted!");
+            console.log("Access granted!");
         } else {
-            console.alert("Access denied!");
+            console.log("Access denied!");
         }
       }
     };
@@ -25,7 +25,7 @@ function addUser(){
     let confirmPassword = document.querySelector('#confirmPassword');
 
     if (password.value == confirmPassword.value) {
-        console.alert("Two password not match!");
+        console.log("Two password not match!");
         return;
     }
        
@@ -43,7 +43,7 @@ function addUser(){
         if (xhr.readyState === 4 && xhr.status === 200) { 
 
             // Print received data from server 
-            console.alert("User added!");
+            console.log("User added!");
         } 
     };
 
