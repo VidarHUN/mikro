@@ -9,6 +9,17 @@
     height: 300px;
 }
 
+#register {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 600px;
+    height: 400px;
+}
+
 body {
     background-image: url('./login.jpg');
   }
