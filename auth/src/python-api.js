@@ -8,7 +8,7 @@ function checkUser() {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         user = JSON.parse(this.responseText);
-        if (user.password == password) {
+        if (user.password == password.value) {
             console.alert("Access granted!");
         } else {
             console.alert("Access denied!");
@@ -24,7 +24,7 @@ function addUser(){
     let password = document.querySelector('#password');
     let confirmPassword = document.querySelector('#confirmPassword');
 
-    if (password == confirmPassword) {
+    if (password.value == confirmPassword.value) {
         console.alert("Two password not match!");
         return;
     }
