@@ -27,9 +27,11 @@ metadata:
   labels:
     app: auth-service
 spec:
+  type: NodePort
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
+      nodePort: 31080
   selector:
     app: auth-pod

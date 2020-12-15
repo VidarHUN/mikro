@@ -40,13 +40,13 @@ class UserManager(Resource):
     # Get user many or one
     @staticmethod
     def get():
-        try: id = request.args['id'] # Check if the URL contain an ID
-        except Exception as _: id = None
+        try: name = request.args['username'] # Check if the URL contain an ID
+        except Exception as _: name = None
 
-        if not id: # If there is no ID return back with every user
+        if not name: # If there is no ID return back with every user
             users = User.query.all()
             return jsonify(users_schema.dump(users))
-        user = User.query.get(id) # Else return back the specific user
+        user = User.query.filter_by(username=name).first() # Else return back the specific user
         return jsonify(user_schema.dump(user))
 
     @staticmethod
@@ -65,11 +65,11 @@ class UserManager(Resource):
     @staticmethod
     def put():
         # If there is not have an ID return back an error
-        try: id = request.args['id']
+        try: id = request.args['username']
         except Exception as _: id = None
         if not id:
             return jsonify({ 'Message': 'Must provide the user ID' })
-        user = User.query.get(id) # Get user by ID
+        user = User.query.filter_by(username=id).first() # Get user by ID
 
         username = request.json['username']
         password = request.json['password']
@@ -85,11 +85,11 @@ class UserManager(Resource):
     # Delete a specific user from database
     @staticmethod
     def delete():
-        try: id = request.args['id']
+        try: id = request.args['username']
         except Exception as _: id = None
         if not id:
             return jsonify({ 'Message': 'Must provide the user ID' })
-        user = User.query.get(id)
+        user = User.query.filter_by(username=id).first()
 
         db.session.delete(user)
         db.session.commit()

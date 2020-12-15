@@ -5,9 +5,11 @@ metadata:
   labels:
     app: frontend-service
 spec:
+  type: NodePort
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
+      nodePort: 31000
   selector:
     app: frontend-pod
