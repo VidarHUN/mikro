@@ -19,17 +19,17 @@ ma = Marshmallow(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), unique=True)
-    role = db.Column(db.String(32))
+    password = db.Column(db.String(32))
 
     # Constructor
-    def __init__(self, username, role):
+    def __init__(self, username, password):
         self.username = username
-        self.role = role
+        self.password = password
 
 # Schema for json parsing
 class UserSchema(ma.Schema):
     class Meta: 
-        fields = ('id', 'username', 'role')
+        fields = ('id', 'username', 'password')
 
 user_schema = UserSchema() # Fetch a single user
 users_schema = UserSchema(many=True) # Fetch multiple user
@@ -52,13 +52,13 @@ class UserManager(Resource):
     @staticmethod
     def post():
         username = request.json['username']
-        role = request.json['role']
+        password = request.json['password']
 
-        user = User(username, role)
+        user = User(username, password)
         db.session.add(user)
         db.session.commit()
         return jsonify({
-            'Message': f'User {username} with role: {role} inserted.'
+            'Message': f'User {username} inserted.'
         })
 
     # Update an existing user
@@ -72,10 +72,10 @@ class UserManager(Resource):
         user = User.query.get(id) # Get user by ID
 
         username = request.json['username']
-        role = request.json['role']
+        password = request.json['password']
 
         user.username = username 
-        user.role = role 
+        user.password = password
 
         db.session.commit()
         return jsonify({
