@@ -10,6 +10,6 @@ Earned points:
 - Running in kubernetes: **10**
 - Running CI: **5**
 - 3 microservices: **5**
-- Traefik gateway: **5**
+- ui: **5**
 
 Points summary: **39**
