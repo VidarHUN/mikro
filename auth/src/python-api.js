@@ -24,7 +24,7 @@ function addUser(){
     let password = document.querySelector('#password');
     let confirmPassword = document.querySelector('#confirmPassword');
 
-    if (password.value == confirmPassword.value) {
+    if (password.value != confirmPassword.value) {
         console.log("Two password not match!");
         return;
     }
