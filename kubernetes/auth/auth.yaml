@@ -17,6 +17,7 @@ spec:
       containers:
         - name: auth-container
           image: vidarhun/auth
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
 ---

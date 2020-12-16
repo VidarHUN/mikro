@@ -8,6 +8,7 @@ function checkUser() {
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         user = JSON.parse(this.responseText);
+
         if (user.password == password.value) {
             console.log("Access granted!");
         } else {
@@ -15,7 +16,7 @@ function checkUser() {
         }
       }
     };
-    xhttp.open("GET", url + "?username=" + username, true);
+    xhttp.open("GET", url + "?username=" + username.value, true);
     xhttp.send();
 }
 
